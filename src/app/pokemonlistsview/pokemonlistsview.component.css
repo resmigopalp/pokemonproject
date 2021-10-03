@@ -1,0 +1,46 @@
+.pokemon-list
+{
+    display:grid;
+    grid-gap: 16px;
+    padding:20px;
+    grid-template-columns: repeat(auto-fit,minmax(23%,1fr));
+
+
+}
+
+.pokemon-list .box
+{
+    width: 100%;
+    height:300px;
+    box-shadow: 1px 2px 5px rgba(0,0,0,0.3) ;
+    text-align: center;
+}
+
+.pokemon-list .box img 
+{
+    max-width: 100%;
+    display:inline-block;
+}
+.pokemon-list .box ul
+{
+    display:inline-block;
+
+}
+.pokemon-list .box li::marker
+{
+    display: inline-block;
+}
+.list-group
+{
+    padding :10%;
+    display:inline-block;
+}
+.pagedropdown
+{
+    text-align: right;
+}
+.searchvalue
+{
+    Width :50%;
+    Height:20%;
+}

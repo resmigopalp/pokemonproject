@@ -1,0 +1,51 @@
+<div class="search-pokemon" style="text-align: center; margin-top: 20px;">
+    <input  class="searchvalue" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search...">
+ </div>
+ <br/>
+ <div style="text-align: right;">
+   <span class="pagedropdown">No: of items in a page
+       <select (change)="update($event)" [(ngModel)]="selected">
+           <option *ngFor="let pgselect of pageselect" [value]="pgselect">
+               {{pgselect}}
+           </option>
+       </select></span>
+   <span style="text-align: right;">
+       Sort By :
+   <select [(ngModel)]="sortvalue">
+       <option *ngFor="let sort of sortingnames" [value]="sort">
+           {{sort}}
+       </option>
+   </select>
+     <!-- <select [(ngModel)]="" style="padding-left: 5px;">
+       <option [value]="true">Desc</option>
+       <option [value]="false">Asc</option>
+   </select>-->
+   </span>
+</div>
+<br/>
+<pagination-controls (pageChange)="page=$event; pokemonsarray=[];getPokemons();" style="text-align: right;"></pagination-controls>
+<br/>
+<div class="pokemon-list">
+  <div class="box" *ngFor ="let pokemon of pokemonsarray |paginate :{itemsPerPage:10,currentPage:page,totalItems: totalpoke} | filter:searchText | orderBy:sortvalue">
+       <img src={{pokemon.sprites.back_default}} alt="Pokemon"/>
+       <h3>
+           {{pokemon.name}}
+       </h3>
+       <p>
+           <b>Height:</b>{{pokemon.height}}
+       </p>
+       <p>
+           <b>Weight:</b>{{pokemon.weight}}
+       </p>
+       <div class="list-group">
+           <ul>
+               <b><u>List of Activities</u></b>
+               <li *ngFor ="let activity of pokemon.abilities;let i=index">
+                   {{activity.ability.name}}
+               </li>
+           </ul>
+       </div>
+   </div>
+  
+</div>
+<pagination-controls (pageChange)="page=$event; pokemonsarray=[];getPokemons();"></pagination-controls>
